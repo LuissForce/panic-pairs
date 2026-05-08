@@ -594,6 +594,16 @@
        These rules make the layout stack nicely on phones.
     ============================== */
     @media (max-width: 768px) {
+      /* Smaller carousel dots on phones so all dots fit between arrows */
+      .carousel-dots {
+        gap: 5px;
+      }
+
+      .carousel-dot {
+        width: 7px;
+        height: 7px;
+      }
+
       /* Smaller hero cards on phones */
       .image-container img {
         max-width: 260px;
