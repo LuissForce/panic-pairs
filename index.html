@@ -481,12 +481,17 @@
     }
 
     .carousel-controls {
-      display: flex;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: 56px 1fr 56px;
       align-items: center;
+      gap: 18px;
       width: 100%;
       max-width: 720px;
       margin-bottom: 18px;
+    }
+
+    .carousel-controls .carousel-dots {
+      margin-top: 0;
     }
 
     .carousel-button {
@@ -783,6 +788,9 @@
         <div class="letter-info-area">
           <div class="carousel-controls">
             <button class="carousel-button" id="prev-letter-card" type="button">&lt;</button>
+
+            
+
             <button class="carousel-button" id="next-letter-card" type="button">&gt;</button>
           </div>
 
@@ -920,6 +928,9 @@
         <div class="carousel-text-area">
           <div class="carousel-controls">
             <button class="carousel-button" id="prev-card" type="button">&lt;</button>
+
+            
+
             <button class="carousel-button" id="next-card" type="button">&gt;</button>
           </div>
 
