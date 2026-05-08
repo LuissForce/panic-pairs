@@ -208,6 +208,8 @@
     ============================== */
     .rule-card {
       width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
       background-color: #f8f4f1;
       color: #222;
       display: flex;
@@ -265,6 +267,8 @@
     .step-card,
     .step-card-white {
       width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
       color: #222;
       display: flex;
       align-items: center;
@@ -303,6 +307,8 @@
     ============================== */
     .play-card {
       width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
       background-color: #ffffff;
       color: #222;
       display: grid;
@@ -405,12 +411,15 @@
     ============================== */
     .letter-carousel {
       width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
       background-color: #ffffff;
       color: #222;
       display: grid;
-      grid-template-columns: minmax(280px, 520px) 1fr;
+      grid-template-columns: minmax(280px, 520px) minmax(500px, 720px);
       gap: 56px;
       align-items: center;
+      justify-content: center;
       padding: 56px 60px;
     }
 
@@ -463,12 +472,15 @@
     ============================== */
     .chance-carousel {
       width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
       background-color: #f8f4f1;
       color: #222;
       display: grid;
-      grid-template-columns: minmax(220px, 420px) 1fr;
+      grid-template-columns: minmax(220px, 420px) minmax(500px, 720px);
       gap: 60px;
       align-items: start;
+      justify-content: center;
       padding: 56px 60px;
     }
 
@@ -594,6 +606,16 @@
        These rules make the layout stack nicely on phones.
     ============================== */
     @media (max-width: 768px) {
+      .letter-carousel,
+      .chance-carousel,
+      .play-card,
+      .step-card,
+      .step-card-white,
+      .rule-card {
+        width: calc(100% - 24px);
+        margin-left: auto;
+        margin-right: auto;
+      }
       /* Smaller carousel dots on phones so all dots fit between arrows */
       .carousel-dots {
         gap: 5px;
