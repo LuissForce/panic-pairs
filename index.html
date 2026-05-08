@@ -17,8 +17,25 @@
     }
 
     /* Main page background color */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Main page background color */
     body {
       background: #f8f4f1;
+      animation: pageFadeIn 0.45s ease both;
+      font-weight: 400;
+    }
+
+    @keyframes pageFadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
     }
 
     /* ==============================
@@ -53,8 +70,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 40px;
-      padding: 40px;
+      gap: 44px;
+      padding: 52px 40px;
       flex-wrap: wrap;
     }
 
@@ -67,19 +84,21 @@
     .text-container {
       flex: 1;
       min-width: 280px;
+      max-width: 760px;
       color: white;
     }
 
     .text-container h1 {
       font-size: clamp(1.4rem, 3.2vw, 2.4rem);
-      line-height: 1.3;
+      line-height: 1.45;
       margin-bottom: 20px;
-      font-weight: bold;
+      font-weight: 700;
     }
 
     .text-container p {
       font-size: clamp(1rem, 2vw, 1.4rem);
-      line-height: 1.6;
+      line-height: 1.8;
+      font-weight: 400;
     }
 
     /* ==============================
@@ -107,7 +126,7 @@
       width: 100%;
       text-align: left;
       color: white;
-      padding: 70px 0;
+      padding: 80px 0;
     }
 
     .expandable-1 {
@@ -121,13 +140,21 @@
     .expandable-header {
       text-align: center;
       cursor: pointer;
+      padding: 8px 20px;
+      transition: transform 0.25s ease, filter 0.25s ease;
+    }
+
+    .expandable-header:hover,
+    .expandable-header:focus-within {
+      transform: translateY(-2px);
+      filter: brightness(1.04);
     }
 
     .expandable h2 {
       font-size: clamp(2.4rem, 6.5vw, 5.8rem);
       line-height: 1.1;
       font-weight: bold;
-      text-shadow: 5px 5px 8px rgba(0, 0, 0, 0.3);
+      text-shadow: 3px 4px 6px rgba(0, 0, 0, 0.22);
       margin-bottom: 10px;
     }
 
@@ -135,7 +162,7 @@
       font-size: clamp(1.6rem, 3vw, 3rem);
       line-height: 1.2;
       font-weight: bold;
-      text-shadow: 4px 4px 7px rgba(0, 0, 0, 0.3);
+      text-shadow: 3px 4px 6px rgba(0, 0, 0, 0.22);
       margin-bottom: 25px;
     }
 
@@ -147,20 +174,32 @@
       font-size: clamp(1rem, 1.8vw, 1.7rem);
       text-decoration: none;
       cursor: pointer;
+      min-height: 44px;
+      padding: 6px 14px;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    .expand-button:hover {
+      transform: scale(1.04);
+      opacity: 0.92;
     }
 
     /* Hidden content area inside each expandable section */
     .expand-content {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.4s ease, padding-top 0.4s ease;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: max-height 0.55s ease, padding-top 0.45s ease, opacity 0.45s ease, transform 0.45s ease;
       font-size: 1.4rem;
     }
 
     .expandable.open .expand-content {
       max-height: none;
       overflow: visible;
-      padding-top: 30px;
+      opacity: 1;
+      transform: translateY(0);
+      padding-top: 36px;
     }
 
     /* ==============================
@@ -174,8 +213,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 45px;
-      padding: 35px 40px;
+      gap: 48px;
+      padding: 48px 40px;
       text-align: left;
     }
 
@@ -198,6 +237,7 @@
       max-width: 30%;
       height: auto;
       flex-shrink: 0;
+      filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.14));
     }
 
     .rule-text h3 {
@@ -209,9 +249,11 @@
 
     .rule-text ul {
       font-size: clamp(1.4rem, 2.5vw, 2.6rem);
-      line-height: 1.5;
+      line-height: 1.75;
+      font-weight: 400;
       list-style-position: outside;
       padding-left: 35px;
+      max-width: 980px;
     }
 
     /* ==============================
@@ -227,8 +269,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 45px;
-      padding: 35px 40px;
+      gap: 48px;
+      padding: 48px 40px;
       text-align: left;
     }
 
@@ -245,11 +287,14 @@
       max-width: 40%;
       height: auto;
       flex-shrink: 0;
+      filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.12));
     }
 
     .step-text {
       font-size: clamp(1.6rem, 2.8vw, 3rem);
-      line-height: 1.6;
+      line-height: 1.78;
+      font-weight: 400;
+      max-width: 980px;
     }
 
     /* ==============================
@@ -261,9 +306,9 @@
       background-color: #ffffff;
       color: #222;
       display: grid;
-      grid-template-columns: 300px 1fr;
-      gap: 40px;
-      padding: 35px 40px;
+      grid-template-columns: 300px minmax(280px, 900px);
+      gap: 44px;
+      padding: 48px 40px;
       text-align: left;
       align-items: start;
     }
@@ -272,6 +317,7 @@
       width: 300px;
       max-width: 100%;
       height: auto;
+      filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.12));
     }
 
     .play-text h3 {
@@ -284,7 +330,8 @@
 
     .play-text p {
       font-size: clamp(1.2rem, 2vw, 2rem);
-      line-height: 1.7;
+      line-height: 1.85;
+      font-weight: 400;
       margin-bottom: 34px;
     }
 
@@ -293,8 +340,8 @@
       color: white;
       font-size: clamp(1.2rem, 2vw, 2rem);
       font-weight: bold;
-      border-radius: 30px;
-      padding: 4px 24px;
+      border-radius: 18px;
+      padding: 8px 28px;
       margin-bottom: 12px;
     }
 
@@ -330,8 +377,13 @@
       width: 100%;
       background-color: #7fcddd;
       text-align: center;
-      padding: 18px 20px;
+      padding: 20px 20px;
       cursor: pointer;
+      transition: filter 0.25s ease, transform 0.25s ease;
+    }
+
+    .back-to-top:hover {
+      filter: brightness(1.05);
     }
 
     .back-to-top a {
@@ -357,15 +409,17 @@
       color: #222;
       display: grid;
       grid-template-columns: minmax(280px, 520px) 1fr;
-      gap: 50px;
+      gap: 56px;
       align-items: center;
-      padding: 45px 60px;
+      padding: 56px 60px;
     }
 
     .letter-card-image {
       width: 100%;
       max-width: 480px;
       margin: 0 auto;
+      filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.14));
+      transition: opacity 0.22s ease, transform 0.22s ease;
     }
 
     .letter-info-area {
@@ -382,8 +436,11 @@
       font-size: clamp(1.3rem, 2.5vw, 2.4rem);
       font-weight: bold;
       text-align: center;
-      padding: 6px 12px;
-      margin-bottom: 10px;
+      padding: 10px 18px;
+      margin-bottom: 12px;
+      border-radius: 8px;
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.08);
+      transition: opacity 0.22s ease, transform 0.22s ease;
     }
 
     .letter-row {
@@ -412,13 +469,15 @@
       grid-template-columns: minmax(220px, 420px) 1fr;
       gap: 60px;
       align-items: start;
-      padding: 45px 60px;
+      padding: 56px 60px;
     }
 
     .carousel-card-image {
       width: 100%;
       max-width: 360px;
       margin: 0 auto;
+      filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.14));
+      transition: opacity 0.22s ease, transform 0.22s ease;
     }
 
     .carousel-controls {
@@ -434,12 +493,25 @@
       background-color: #2d86bd;
       color: white;
       border: none;
-      width: 52px;
-      height: 44px;
+      width: 56px;
+      height: 48px;
       font-size: 2rem;
       font-weight: bold;
       cursor: pointer;
       line-height: 1;
+      border-radius: 8px;
+      box-shadow: 0 5px 8px rgba(0, 0, 0, 0.14);
+      transition: transform 0.22s ease, filter 0.22s ease;
+    }
+
+    .carousel-button:hover,
+    .carousel-button:focus {
+      filter: brightness(1.08);
+      transform: translateY(-2px) scale(1.04);
+    }
+
+    .carousel-button.spin {
+      transform: rotate(180deg) scale(1.04);
     }
 
     .carousel-title {
@@ -447,15 +519,47 @@
       color: white;
       background: linear-gradient(90deg, #783aa3, #174ea6);
       border-radius: 8px;
-      padding: 4px 12px;
+      padding: 8px 16px;
       font-size: clamp(1.3rem, 2.3vw, 2.2rem);
       font-weight: bold;
       margin-bottom: 18px;
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.08);
+      transition: opacity 0.22s ease, transform 0.22s ease;
     }
 
     .carousel-description {
       font-size: clamp(1.4rem, 2.4vw, 2.5rem);
-      line-height: 1.55;
+      line-height: 1.75;
+      font-weight: 400;
+      max-width: 980px;
+      transition: opacity 0.22s ease, transform 0.22s ease;
+    }
+
+    .carousel-fade {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .carousel-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: none;
+      background-color: rgba(45, 134, 189, 0.35);
+      cursor: pointer;
+      transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+
+    .carousel-dot.active {
+      background-color: #2d86bd;
+      transform: scale(1.25);
     }
 
     /* ==============================
@@ -472,6 +576,14 @@
       font-weight: 400;
     }
 
+    button:focus-visible,
+    a:focus-visible,
+    .expandable-header:focus-visible,
+    .back-to-top:focus-visible {
+      outline: 3px solid rgba(255, 255, 255, 0.9);
+      outline-offset: 4px;
+    }
+
     /* ==============================
        MOBILE RESPONSIVE STYLES
        These rules make the layout stack nicely on phones.
@@ -486,13 +598,15 @@
       .hero-section {
         flex-direction: column;
         text-align: center;
-        padding: 30px 20px;
+        padding: 34px 16px;
+        gap: 28px;
       }
 
       .rule-card {
         flex-direction: column;
         text-align: center;
-        padding: 30px 20px;
+        padding: 36px 16px;
+        gap: 24px;
       }
 
       .rule-image {
@@ -506,7 +620,8 @@
       .play-card {
         grid-template-columns: 1fr;
         text-align: center;
-        padding: 30px 20px;
+        padding: 36px 16px;
+        gap: 24px;
       }
 
       .play-image {
@@ -535,7 +650,8 @@
       .step-card-white {
         flex-direction: column;
         text-align: center;
-        padding: 30px 20px;
+        padding: 36px 16px;
+        gap: 24px;
       }
 
       .step-image {
@@ -549,12 +665,12 @@
       .letter-carousel,
       .chance-carousel {
         grid-template-columns: 1fr;
-        gap: 24px;
-        padding: 35px 24px;
+        gap: 26px;
+        padding: 38px 16px;
       }
 
       .letter-card-image {
-        max-width: 320px;
+        max-width: 230px;
       }
 
       .letter-info-area {
@@ -676,6 +792,8 @@
             <div id="letter-card-challenge-en">What insects do you like?</div>
             <div id="letter-card-challenge-jp">すきな「むし」は？</div>
           </div>
+
+          <div class="carousel-dots" id="letter-card-dots" aria-label="Letter card carousel navigation"></div>
         </div>
       </section>
 
@@ -809,6 +927,8 @@
           <div id="chance-card-description" class="carousel-description">
             まわるじゅんばんがぎゃくになります。（みぎにすわっているプレイヤーのカードを引きます。）
           </div>
+
+          <div class="carousel-dots" id="chance-card-dots" aria-label="Chance card carousel navigation"></div>
         </div>
       </section>
 
@@ -952,25 +1072,58 @@
     const letterCardChallengeJp = document.getElementById('letter-card-challenge-jp');
     const prevLetterCardButton = document.getElementById('prev-letter-card');
     const nextLetterCardButton = document.getElementById('next-letter-card');
+    const letterCardDots = document.getElementById('letter-card-dots');
 
-    function showLetterCard(index) {
-      const card = letterCards[index];
-      letterCardImage.src = card.image;
-      letterCardImage.alt = card.alt;
-      letterCardLetter.textContent = card.letter;
-      letterCardWord.textContent = card.word;
-      letterCardChallengeEn.textContent = card.challengeEn;
-      letterCardChallengeJp.textContent = card.challengeJp;
+    function createDots(container, items, activeIndex, clickHandler) {
+      container.innerHTML = '';
+
+      items.forEach((item, index) => {
+        const dot = document.createElement('button');
+        dot.className = index === activeIndex ? 'carousel-dot active' : 'carousel-dot';
+        dot.type = 'button';
+        dot.setAttribute('aria-label', `Go to item ${index + 1}`);
+        dot.addEventListener('click', () => clickHandler(index));
+        container.appendChild(dot);
+      });
     }
 
+    function animateCarouselChange(elements, button, updateContent) {
+      elements.forEach((element) => element.classList.add('carousel-fade'));
+      button.classList.add('spin');
+
+      setTimeout(() => {
+        updateContent();
+        elements.forEach((element) => element.classList.remove('carousel-fade'));
+        button.classList.remove('spin');
+      }, 180);
+    }
+
+    function showLetterCard(index, button = nextLetterCardButton) {
+      currentLetterCard = index;
+      animateCarouselChange(
+        [letterCardImage, letterCardLetter, letterCardWord, letterCardChallengeEn, letterCardChallengeJp],
+        button,
+        () => {
+          const card = letterCards[currentLetterCard];
+          letterCardImage.src = card.image;
+          letterCardImage.alt = card.alt;
+          letterCardLetter.textContent = card.letter;
+          letterCardWord.textContent = card.word;
+          letterCardChallengeEn.textContent = card.challengeEn;
+          letterCardChallengeJp.textContent = card.challengeJp;
+          createDots(letterCardDots, letterCards, currentLetterCard, (dotIndex) => showLetterCard(dotIndex));
+        }
+      );
+    }
+
+    createDots(letterCardDots, letterCards, currentLetterCard, (dotIndex) => showLetterCard(dotIndex));
+
     prevLetterCardButton.addEventListener('click', () => {
-      currentLetterCard = (currentLetterCard - 1 + letterCards.length) % letterCards.length;
-      showLetterCard(currentLetterCard);
+      showLetterCard((currentLetterCard - 1 + letterCards.length) % letterCards.length, prevLetterCardButton);
     });
 
     nextLetterCardButton.addEventListener('click', () => {
-      currentLetterCard = (currentLetterCard + 1) % letterCards.length;
-      showLetterCard(currentLetterCard);
+      showLetterCard((currentLetterCard + 1) % letterCards.length, nextLetterCardButton);
     });
 
     /* Chance card carousel data */
@@ -1020,24 +1173,70 @@
     const chanceCardDescription = document.getElementById('chance-card-description');
     const prevCardButton = document.getElementById('prev-card');
     const nextCardButton = document.getElementById('next-card');
+    const chanceCardDots = document.getElementById('chance-card-dots');
 
-    function showChanceCard(index) {
-      const card = chanceCards[index];
-      chanceCardImage.src = card.image;
-      chanceCardImage.alt = card.alt;
-      chanceCardTitle.textContent = card.name;
-      chanceCardDescription.textContent = card.description;
+    function showChanceCard(index, button = nextCardButton) {
+      currentChanceCard = index;
+      animateCarouselChange(
+        [chanceCardImage, chanceCardTitle, chanceCardDescription],
+        button,
+        () => {
+          const card = chanceCards[currentChanceCard];
+          chanceCardImage.src = card.image;
+          chanceCardImage.alt = card.alt;
+          chanceCardTitle.textContent = card.name;
+          chanceCardDescription.textContent = card.description;
+          createDots(chanceCardDots, chanceCards, currentChanceCard, (dotIndex) => showChanceCard(dotIndex));
+        }
+      );
     }
 
+    createDots(chanceCardDots, chanceCards, currentChanceCard, (dotIndex) => showChanceCard(dotIndex));
+
     prevCardButton.addEventListener('click', () => {
-      currentChanceCard = (currentChanceCard - 1 + chanceCards.length) % chanceCards.length;
-      showChanceCard(currentChanceCard);
+      showChanceCard((currentChanceCard - 1 + chanceCards.length) % chanceCards.length, prevCardButton);
     });
 
     nextCardButton.addEventListener('click', () => {
-      currentChanceCard = (currentChanceCard + 1) % chanceCards.length;
-      showChanceCard(currentChanceCard);
+      showChanceCard((currentChanceCard + 1) % chanceCards.length, nextCardButton);
     });
+
+    function addSwipeSupport(area, onSwipeLeft, onSwipeRight) {
+      let startX = 0;
+      let startY = 0;
+
+      area.addEventListener('touchstart', (event) => {
+        startX = event.touches[0].clientX;
+        startY = event.touches[0].clientY;
+      }, { passive: true });
+
+      area.addEventListener('touchend', (event) => {
+        const endX = event.changedTouches[0].clientX;
+        const endY = event.changedTouches[0].clientY;
+        const diffX = endX - startX;
+        const diffY = endY - startY;
+
+        if (Math.abs(diffX) > 50 && Math.abs(diffX) > Math.abs(diffY)) {
+          if (diffX < 0) {
+            onSwipeLeft();
+          } else {
+            onSwipeRight();
+          }
+        }
+      }, { passive: true });
+    }
+
+    addSwipeSupport(
+      document.getElementById('letter-card-details'),
+      () => showLetterCard((currentLetterCard + 1) % letterCards.length, nextLetterCardButton),
+      () => showLetterCard((currentLetterCard - 1 + letterCards.length) % letterCards.length, prevLetterCardButton)
+    );
+
+    addSwipeSupport(
+      document.getElementById('chance-card-details'),
+      () => showChanceCard((currentChanceCard + 1) % chanceCards.length, nextCardButton),
+      () => showChanceCard((currentChanceCard - 1 + chanceCards.length) % chanceCards.length, prevCardButton)
+    );
 
     const topButtons = document.querySelectorAll('.collapse-top-button');
 
