@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Responsive Logo</title>
+
+  <style>
+    /* ==============================
+       GLOBAL RESET
+       Removes default spacing and makes sizing easier to control.
+    ============================== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Main page background color */
+    body {
+      background: #f8f4f1;
+    }
+
+    /* ==============================
+       TOP HEADER IMAGE
+       This is the wide image at the very top of the page.
+    ============================== */
+    .header-logo {
+      width: 100%;
+      max-width: none;
+      height: auto;
+      display: block;
+    }
+
+    img {
+      width: 100%;
+      max-width: 500px;
+      height: auto;
+      display: block;
+    }
+
+    .top-header {
+      width: 100%;
+    }
+
+    /* ==============================
+       MAIN INTRO SECTION
+       Blue section with image on the left and main text on the right.
+    ============================== */
+    .hero-section {
+      width: 100%;
+      background-color: #2d86bd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      padding: 40px;
+      flex-wrap: wrap;
+    }
+
+    .image-container {
+      flex: 1;
+      min-width: 250px;
+      max-width: 400px;
+    }
+
+    .text-container {
+      flex: 1;
+      min-width: 280px;
+      color: white;
+    }
+
+    .text-container h1 {
+      font-size: clamp(1.4rem, 3.2vw, 2.4rem);
+      line-height: 1.3;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+
+    .text-container p {
+      font-size: clamp(1rem, 2vw, 1.4rem);
+      line-height: 1.6;
+    }
+
+    /* ==============================
+       FULL WIDTH IMAGE SECTION
+       This displays image 3 across the full page width.
+    ============================== */
+    .full-image-section {
+      width: 100%;
+    }
+
+    .full-width-image {
+      width: 100%;
+      max-width: none;
+      display: block;
+      height: auto;
+    }
+
+    /* ==============================
+       EXPANDABLE SECTIONS
+       These are the two big clickable sections:
+       1. Standard Rules
+       2. Advanced Mode
+    ============================== */
+    .expandable {
+      width: 100%;
+      text-align: left;
+      color: white;
+      padding: 70px 0;
+    }
+
+    .expandable-1 {
+      background-color: #7fcddd;
+    }
+
+    .expandable-2 {
+      background-color: #2d86bd;
+    }
+
+    .expandable-header {
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .expandable h2 {
+      font-size: clamp(2.4rem, 6.5vw, 5.8rem);
+      line-height: 1.1;
+      font-weight: bold;
+      text-shadow: 5px 5px 8px rgba(0, 0, 0, 0.3);
+      margin-bottom: 10px;
+    }
+
+    .expandable h3 {
+      font-size: clamp(1.6rem, 3vw, 3rem);
+      line-height: 1.2;
+      font-weight: bold;
+      text-shadow: 4px 4px 7px rgba(0, 0, 0, 0.3);
+      margin-bottom: 25px;
+    }
+
+    /* Button text that opens and closes each expandable section */
+    .expand-button {
+      background: none;
+      border: none;
+      color: white;
+      font-size: clamp(1rem, 1.8vw, 1.7rem);
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    /* Hidden content area inside each expandable section */
+    .expand-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding-top 0.4s ease;
+      font-size: 1.4rem;
+    }
+
+    .expandable.open .expand-content {
+      max-height: none;
+      overflow: visible;
+      padding-top: 30px;
+    }
+
+    /* ==============================
+       RULE STEP 1 CARD
+       Used for the first preparation section with number, image, and text.
+    ============================== */
+    .rule-card {
+      width: 100%;
+      background-color: #f8f4f1;
+      color: #222;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 45px;
+      padding: 35px 40px;
+      text-align: left;
+    }
+
+    /* Red numbered circle used for steps 1 to 5 */
+    .rule-number {
+      width: 70px;
+      height: 70px;
+      background-color: #b8142d;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      flex-shrink: 0;
+    }
+
+    .rule-image {
+      width: 260px;
+      max-width: 30%;
+      height: auto;
+      flex-shrink: 0;
+    }
+
+    .rule-text h3 {
+      color: #2d5da8;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      margin-bottom: 20px;
+      text-shadow: none;
+    }
+
+    .rule-text ul {
+      font-size: clamp(1.4rem, 2.5vw, 2.6rem);
+      line-height: 1.5;
+      list-style-position: outside;
+      padding-left: 35px;
+    }
+
+    /* ==============================
+       STEP CARDS
+       These are the image + text instruction rows.
+       .step-card uses beige background.
+       .step-card-white uses white background.
+    ============================== */
+    .step-card,
+    .step-card-white {
+      width: 100%;
+      color: #222;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 45px;
+      padding: 35px 40px;
+      text-align: left;
+    }
+
+    .step-card-white {
+      background-color: #ffffff;
+    }
+
+    .step-card {
+      background-color: #f8f4f1;
+    }
+
+    .step-image {
+      width: 420px;
+      max-width: 40%;
+      height: auto;
+      flex-shrink: 0;
+    }
+
+    .step-text {
+      font-size: clamp(1.6rem, 2.8vw, 3rem);
+      line-height: 1.6;
+    }
+
+    /* ==============================
+       PLAY RULE CARDS
+       These are the 4 separated あそびかた sections.
+    ============================== */
+    .play-card {
+      width: 100%;
+      background-color: #ffffff;
+      color: #222;
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 40px;
+      padding: 35px 40px;
+      text-align: left;
+      align-items: start;
+    }
+
+    .play-image {
+      width: 300px;
+      max-width: 100%;
+      height: auto;
+    }
+
+    .play-text h3 {
+      color: #2d5da8;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      text-align: left;
+      text-shadow: none;
+      margin-bottom: 28px;
+    }
+
+    .play-text p {
+      font-size: clamp(1.2rem, 2vw, 2rem);
+      line-height: 1.7;
+      margin-bottom: 34px;
+    }
+
+    .rule-label {
+      display: inline-block;
+      color: white;
+      font-size: clamp(1.2rem, 2vw, 2rem);
+      font-weight: bold;
+      border-radius: 30px;
+      padding: 4px 24px;
+      margin-bottom: 12px;
+    }
+
+    .easy-rule {
+      background-color: #7bc943;
+    }
+
+    .basic-rule {
+      background-color: #38b6d8;
+    }
+
+    .hard-rule {
+      background-color: #6351a5;
+    }
+
+    /* ==============================
+       PLACEHOLDER SECTIONS
+       These are temporary sections to edit later.
+    ============================== */
+    .placeholder-section {
+      width: 100%;
+      background-color: #f8f4f1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 500px;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    /* トップにもどる button section */
+    .back-to-top {
+      width: 100%;
+      background-color: #7fcddd;
+      text-align: center;
+      padding: 18px 20px;
+      cursor: pointer;
+    }
+
+    .back-to-top a {
+      color: white;
+      font-size: clamp(1.2rem, 2vw, 2rem);
+      text-decoration: none;
+    }
+
+    .placeholder-text {
+      font-size: clamp(2rem, 4vw, 4rem);
+      color: #333;
+      font-weight: 400;
+    }
+
+    /* ==============================
+       LETTER CARD CAROUSEL
+       Interactive card area inside expandable 1.
+       The arrows change the letter card image, letter, word, and challenge.
+    ============================== */
+    .letter-carousel {
+      width: 100%;
+      background-color: #ffffff;
+      color: #222;
+      display: grid;
+      grid-template-columns: minmax(280px, 520px) 1fr;
+      gap: 50px;
+      align-items: center;
+      padding: 45px 60px;
+    }
+
+    .letter-card-image {
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .letter-info-area {
+      width: 100%;
+      max-width: 720px;
+      justify-self: stretch;
+    }
+
+    /* The colored information bars now expand to fit larger screen widths */
+    .letter-row,
+    .word-row,
+    .challenge-row {
+      color: white;
+      font-size: clamp(1.3rem, 2.5vw, 2.4rem);
+      font-weight: bold;
+      text-align: center;
+      padding: 6px 12px;
+      margin-bottom: 10px;
+    }
+
+    .letter-row {
+      background-color: #86c63a;
+    }
+
+    .word-row {
+      background-color: #35b6d8;
+    }
+
+    .challenge-row {
+      background-color: #6351a5;
+      line-height: 1.3;
+    }
+
+    /* ==============================
+       CHANCE CARD CAROUSEL
+       Interactive card area inside expandable 2.
+       The arrows change the card image, title, and description.
+    ============================== */
+    .chance-carousel {
+      width: 100%;
+      background-color: #f8f4f1;
+      color: #222;
+      display: grid;
+      grid-template-columns: minmax(220px, 420px) 1fr;
+      gap: 60px;
+      align-items: start;
+      padding: 45px 60px;
+    }
+
+    .carousel-card-image {
+      width: 100%;
+      max-width: 360px;
+      margin: 0 auto;
+    }
+
+    .carousel-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      max-width: 720px;
+      margin-bottom: 18px;
+    }
+
+    .carousel-button {
+      background-color: #2d86bd;
+      color: white;
+      border: none;
+      width: 52px;
+      height: 44px;
+      font-size: 2rem;
+      font-weight: bold;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .carousel-title {
+      display: inline-block;
+      color: white;
+      background: linear-gradient(90deg, #783aa3, #174ea6);
+      border-radius: 8px;
+      padding: 4px 12px;
+      font-size: clamp(1.3rem, 2.3vw, 2.2rem);
+      font-weight: bold;
+      margin-bottom: 18px;
+    }
+
+    .carousel-description {
+      font-size: clamp(1.4rem, 2.4vw, 2.5rem);
+      line-height: 1.55;
+    }
+
+    /* ==============================
+       FOOTER
+       Copyright area at the bottom.
+    ============================== */
+    .footer {
+      width: 100%;
+      background-color: #3d4146;
+      color: white;
+      text-align: center;
+      padding: 18px 20px;
+      font-size: clamp(0.8rem, 1.4vw, 1.5rem);
+      font-weight: 400;
+    }
+
+    /* ==============================
+       MOBILE RESPONSIVE STYLES
+       These rules make the layout stack nicely on phones.
+    ============================== */
+    @media (max-width: 768px) {
+      /* Smaller hero cards on phones */
+      .image-container img {
+        max-width: 260px;
+        margin: 0 auto;
+      }
+
+      .hero-section {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px 20px;
+      }
+
+      .rule-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px 20px;
+      }
+
+      .rule-image {
+        max-width: 80%;
+      }
+
+      .rule-text ul {
+        text-align: left;
+      }
+
+      .play-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 30px 20px;
+      }
+
+      .play-image {
+        margin: 0 auto;
+      }
+
+      .play-text p {
+        text-align: center;
+      }
+
+      .play-text h3 {
+        text-align: center;
+      }
+
+      .step-text {
+        text-align: center;
+      }
+
+      .rule-text ul {
+        text-align: center;
+        list-style-position: inside;
+        padding-left: 0;
+      }
+
+      .step-card,
+      .step-card-white {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px 20px;
+      }
+
+      .step-image {
+        max-width: 90%;
+      }
+
+      .step-text {
+        text-align: left;
+      }
+
+      .letter-carousel,
+      .chance-carousel {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        padding: 35px 24px;
+      }
+
+      .letter-card-image {
+        max-width: 320px;
+      }
+
+      .letter-info-area {
+        max-width: none;
+      }
+
+      .carousel-card-image {
+        max-width: 280px;
+      }
+
+      .carousel-controls {
+        max-width: none;
+      }
+    }
+  </style>
+</head>
+<body id="top">
+
+  <!-- TOP OF PAGE TARGET
+       The id="top" lets the トップにもどる buttons scroll here. -->
+
+  <!-- HEADER SECTION
+       Wide logo/header image at the top. -->
+  <header class="top-header">
+    <img class="header-logo" src="https://raw.githubusercontent.com/LuissForce/panic-pairs/main/image%201@4x.png" alt="Panic Pairs Logo">
+  </header>
+
+  <!-- INTRO / HERO SECTION
+       Blue section with cards image and main explanation text. -->
+  <section class="hero-section">
+    <div class="image-container">
+      <img src="https://raw.githubusercontent.com/LuissForce/panic-pairs/main/image%202@4x.png" alt="Alphabet Cards">
+    </div>
+
+    <div class="text-container">
+      <h1>おなじアルファベットの「おおもじ」と「こもじ」でペアをつくって、手もちのカードをなくそう!</h1>
+      <p>Get rid of all your cards by making uppercase and lowercase letter matches.</p>
+    </div>
+  </section>
+
+  <!-- FULL WIDTH IMAGE SECTION
+       Displays the large image under the hero section. -->
+  <section class="full-image-section">
+    <img class="full-width-image" src="https://raw.githubusercontent.com/LuissForce/panic-pairs/main/image%203@4x.png" alt="Panic Pairs Section Image">
+  </section>
+
+  <!-- EXPANDABLE 1: STANDARD RULES
+       This section opens when the user taps "くわしく見る". -->
+  <section class="expandable expandable-1">
+    <div class="expandable-header">
+      <h2>スタンダードルール</h2>
+      <button class="expand-button">くわしく見る</button>
+    </div>
+    <div class="expand-content">
+      <!-- Step 1: Preparation instructions -->
+      <div class="rule-card">
+        <div class="rule-number">1</div>
+        <img class="rule-image" src="https://raw.githubusercontent.com/LuissForce/panic-pairs/main/image%204@4x.png" alt="Game setup cards">
+        <div class="rule-text">
+          <h3>じゅんび</h3>
+          <ul>
+            <li>「CHANCE CARDS」を6まいぬいておく</li>
+            <li>カードをまぜて、みんなにくばる（プレイヤーによってまいすうがちがってもだいじょうぶです）</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Play rule section 1: How to play overview -->
+      <div class="play-card">
+        <img class="play-image" src="https://raw.githubusercontent.com/LuissForce/panic-pairs/main/image%205.1%20%404x.png" alt="How to play examples">
+        <div class="play-text">
+          <h3>あそびかた</h3>
+          <p>手もちのカードでペアになるカードを出します。<br>ペアを出すときのルールをプレイヤーごとにえらんでね。</p>
+        </div>
+      </div>
+
+      <!-- Play rule section 2: Easy rule -->
+      <div class="play-card">
+        <img class="play-image" src="https://raw.githubusercontent.com/LuissForce/panic-pairs/main/image%205.2%404x.png" alt="Easy rule">
+        <div class="play-text">
+          <div class="rule-label easy-rule">かんたんルール:</div>
+          <p>アルファベットまたはおとをいう。</p>
+        </div>
+      </div>
+
+      <!-- Play rule section 3: Basic rule -->
+      <div class="play-card">
+        <img class="play-image" src="https://raw.githubusercontent.com/LuissForce/panic-pairs/main/image%205.3%404x.png" alt="Basic rule">
+        <div class="play-text">
+          <div class="rule-label basic-rule">きほんルール:</div>
+          <p>カードにかかれていることばをいう。</p>
+        </div>
+      </div>
+
+      <!-- Play rule section 4: Hard rule -->
+      <div class="play-card">
+        <img class="play-image" src="https://raw.githubusercontent.com/LuissForce/panic-pairs/main/image%205.4%404x.png" alt="Hard rule">
+        <div class="play-text">
+          <div class="rule-label hard-rule">むずかしいルール:</div>
+          <p>カードのしつもんにこたえる。</p>
+        </div>
+      </div>
+
+      <!-- LETTER CARD DETAILS CAROUSEL -->
+      <section class="letter-carousel" id="letter-card-details">
+        <div class="letter-image-area">
+          <img id="letter-card-image" class="letter-card-image" src="https://raw.githubusercontent.com/LuissForce/panic-pairs/main/a%404x.png" alt="A letter card">
+        </div>
+
+        <div class="letter-info-area">
+          <div class="carousel-controls">
+            <button class="carousel-button" id="prev-letter-card" type="button">&lt;</button>
+            <button class="carousel-button" id="next-letter-card" type="button">&gt;</button>
+          </div>
+
+          <div id="letter-card-letter" class="letter-row">A = a</div>
+          <div id="letter-card-word" class="word-row">ants</div>
+          <div class="challenge-row">
+            <div id="letter-card-challenge-en">What insects do you like?</div>
+            <div id="letter-card-challenge-jp">すきな「むし」は？</div>
+          </div>
+        </div>
+      </section>
+
+      <div class="step-card">
+        <div class="rule-number">2</div>
+        <img class="step-image" src="https://raw.githubusercontent.com/LuissForce/panic-pairs/main/image%206@4x.png" alt="Player drawing card">
+        <div class="step-text">
+          いちばんとししたのプレイヤーから、ひだりにすわっているプレイヤーのカードを1まいひいてスタートします。
+        </div>
+      </div>
+
+      <div class="step-card-white">
+        <div class="rule-number">3</div>
+        <img class="step-image" src="https://raw.githubusercontent.com/LuissForce/panic-pairs/main/Image%207@4x.png" alt="Matching card example">
+        <div class="step-text">
+          ペアができたら、1できめたルールにしたがって出してね。<br>
+          ペアにならないカードは、そのままもっていよう。
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="rule-number">4</div>
+        <img class="step-image" src="https://raw.githubusercontent.com/LuissForce/panic-pairs/main/image%208@4x.png" alt="Players taking turns">
+        <div class="step-text">
+          とけいまわりでゲームをつづけます。
+        </div>
+      </div>
+
+      <div class="step-card-white">
+        <div class="rule-number">5</div>
+        <img class="step-image" src="https://raw.githubusercontent.com/LuissForce/panic-pairs/main/image%209@4x.png" alt="Winning and losing condition">
+        <div class="step-text">
+          手もちのカードがぜんぶなくなったプレイヤーのかち!<br><br>
+          さいごまでドクター・ダウトカードをもっていたプレイヤーがまけです。
+        </div>
+      </div>
+
+      
+
+      <!-- LETTER GAME EDUCATIONAL NOTE -->
+      <div class="step-card-white">
+        <div class="step-text" style="text-align:center; width:100%; font-size:clamp(1rem, 1.6vw, 1.6rem); line-height:1.5;">
+          ※このゲームを通して、子供たちは楽しく遊びながら大文字と小文字の違いを学びます。<br>
+          使用されているアルファベットは大文字と小文字の形状が違うもののみとなります。
+        </div>
+      </div>
+
+      <div class="back-to-top collapse-top-button">
+        <a href="#top">トップにもどる</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPANDABLE 2: ADVANCED MODE
+       This section explains the chance cards. -->
+  <section class="expandable expandable-2">
+    <div class="expandable-header">
+      <h2>じょうきゅうしゃモード</h2>
+      <h3>CHANCE CARDSをつかおう!</h3>
+      <button class="expand-button">くわしく見る</button>
+    </div>
+    <div class="expand-content">
+      <div class="step-card-white">
+        <img class="step-image" src="https://raw.githubusercontent.com/LuissForce/panic-pairs/main/image%2010@4x.png" alt="Chance cards deck">
+        <div class="step-text">
+          きほんルールになれてきたら、6まいの「チャンスカード」をつかってじょうきゅうルールにちょうせんしよう!<br>
+          じゅんび: 6まいのチャンスカードをよくまぜて、うらにしてテーブルのまんなかにおいてね。
+        </div>
+      </div>
+
+      <div class="step-card">
+        <img class="step-image" src="https://raw.githubusercontent.com/LuissForce/panic-pairs/main/image%2011@4x.png" alt="Using chance cards">
+        <div class="step-text">
+          つかいかた: 「ドクター・ダウト」をもっていたら、じぶんのばんにチャンスカードを1枚引くことができます。
+        </div>
+      </div>
+
+      <div class="step-card-white">
+        <img class="step-image" src="https://raw.githubusercontent.com/LuissForce/panic-pairs/main/image%2012.1%404x.png" alt="Show chance card">
+        <div class="step-text">
+          みんなにチャンスカードを見せます。
+        </div>
+      </div>
+
+      <div class="step-card-white">
+        <img class="step-image" src="https://raw.githubusercontent.com/LuissForce/panic-pairs/main/image%2012.2%404x.png" alt="Draw chance card">
+        <div class="step-text">
+          チャンスカードを1まい引いて、カードにかいてあるとおりにします。
+        </div>
+      </div>
+
+      <div class="step-card-white">
+        <img class="step-image" src="https://raw.githubusercontent.com/LuissForce/panic-pairs/main/image%2012.3%404x.png" alt="Discard chance card">
+        <div class="step-text">
+          つかったチャンスカードはよけておきます。
+        </div>
+      </div>
+
+      <div class="step-card">
+        <img class="step-image" src="https://raw.githubusercontent.com/LuissForce/panic-pairs/main/image%2013@4x.png" alt="Continue the game">
+        <div class="step-text">
+          ひだりのプレイヤーからカードを引いてゲームをつづけます。<br>
+          （チャンスカードがスキップカードのときはつぎのプレイヤーがカードを引きます。）
+        </div>
+      </div>
+
+      <div class="step-card-white">
+        <div class="step-text">
+          ※チャンスカードがぜんぶなくなったら、きほんルールにもどります。<br>
+          いちどつかったチャンスカードはつかえません。<br><br>
+
+          ※じぶんのばんがきたときに引けるチャンスカードは1まいですが、つぎのじぶんのばんがきたときにまだドクター・ダウトカードをもっているばあい、またチャンスカードを引くことができます。
+        </div>
+      </div>
+          <!-- CHANCE CARD DETAILS PLACEHOLDER
+           Temporary section to edit later. -->
+          <section class="chance-carousel" id="chance-card-details">
+        <!-- Chance card carousel image -->
+        <div class="carousel-image-area">
+          <img id="chance-card-image" class="carousel-card-image" src="https://raw.githubusercontent.com/LuissForce/panic-pairs/main/reverse%404x.png" alt="Reverse card">
+        </div>
+
+        <!-- Chance card carousel text and controls -->
+        <div class="carousel-text-area">
+          <div class="carousel-controls">
+            <button class="carousel-button" id="prev-card" type="button">&lt;</button>
+            <button class="carousel-button" id="next-card" type="button">&gt;</button>
+          </div>
+
+          <div id="chance-card-title" class="carousel-title">リバース (Reverse)：</div>
+          <div id="chance-card-description" class="carousel-description">
+            まわるじゅんばんがぎゃくになります。（みぎにすわっているプレイヤーのカードを引きます。）
+          </div>
+        </div>
+      </section>
+
+      <div class="back-to-top collapse-top-button">
+        <a href="#top">トップにもどる</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER SECTION -->
+  <footer class="footer">
+    © 2026 Kids-UP co., Ltd. All Rights Reserved.
+  </footer>
+
+  <!-- JAVASCRIPT
+       Handles opening/collapsing sections and トップにもどる behavior. -->
+  <script>
+    const expandableHeaders = document.querySelectorAll('.expandable-header');
+
+    expandableHeaders.forEach((header) => {
+      header.addEventListener('click', () => {
+        const section = header.closest('.expandable');
+        section.classList.toggle('open');
+      });
+    });
+
+    /* Letter card carousel data */
+    const letterCards = [
+      {
+        letter: 'A = a',
+        word: 'ants',
+        challengeEn: 'What insects do you like?',
+        challengeJp: 'すきな「むし」は？',
+        image: 'https://raw.githubusercontent.com/LuissForce/panic-pairs/main/a%404x.png',
+        alt: 'A letter card'
+      },
+      {
+        letter: 'B = b',
+        word: 'Banana',
+        challengeEn: 'What do bananas grow on?',
+        challengeJp: 'バナナはなににできるの？',
+        image: 'https://raw.githubusercontent.com/LuissForce/panic-pairs/main/b%404x.png',
+        alt: 'B letter card'
+      },
+      {
+        letter: 'D = d',
+        word: 'dance',
+        challengeEn: 'What do you like to do?',
+        challengeJp: 'なにをするのがすき？',
+        image: 'https://raw.githubusercontent.com/LuissForce/panic-pairs/main/d%404x.png',
+        alt: 'D letter card'
+      },
+      {
+        letter: 'E = e',
+        word: 'Elephant',
+        challengeEn: 'Name another big animal!',
+        challengeJp: '大きなどうぶつをもう1ついってみて！',
+        image: 'https://raw.githubusercontent.com/LuissForce/panic-pairs/main/e%404x.png',
+        alt: 'E letter card'
+      },
+      {
+        letter: 'F = f',
+        word: 'Fish',
+        challengeEn: 'Name another animal that lives in water!',
+        challengeJp: '水のなかにすんでいるほかの「どうぶつ」はなにがいるかな？',
+        image: 'https://raw.githubusercontent.com/LuissForce/panic-pairs/main/f%404x.png',
+        alt: 'F letter card'
+      },
+      {
+        letter: 'G = g',
+        word: 'Ghost',
+        challengeEn: 'Name another Halloween character!',
+        challengeJp: 'ハロウィーンの「キャラクター」はほかになにがいるかな？',
+        image: 'https://raw.githubusercontent.com/LuissForce/panic-pairs/main/g%404x.png',
+        alt: 'G letter card'
+      },
+      {
+        letter: 'H = h',
+        word: 'hot',
+        challengeEn: "How's the weather like?",
+        challengeJp: 'きょうのてんきは？',
+        image: 'https://raw.githubusercontent.com/LuissForce/panic-pairs/main/h%404x.png',
+        alt: 'H letter card'
+      },
+      {
+        letter: 'I = i',
+        word: 'Igloo',
+        challengeEn: 'What do you like to do on snowy days?',
+        challengeJp: 'ゆきの日はなにをしてあそぶのがすき？',
+        image: 'https://raw.githubusercontent.com/LuissForce/panic-pairs/main/i%404x.png',
+        alt: 'I letter card'
+      },
+      {
+        letter: 'L = l',
+        word: 'Lion',
+        challengeEn: "What's your favorite animal?",
+        challengeJp: 'すきな「どうぶつ」は？',
+        image: 'https://raw.githubusercontent.com/LuissForce/panic-pairs/main/l%404x.png',
+        alt: 'L letter card'
+      },
+      {
+        letter: 'N = n',
+        word: 'Net',
+        challengeEn: 'Say another word with "n" in it!',
+        challengeJp: '「n」が入っていることばをもう1ついってみて！',
+        image: 'https://raw.githubusercontent.com/LuissForce/panic-pairs/main/n%404x.png',
+        alt: 'N letter card'
+      },
+      {
+        letter: 'Q = q',
+        word: 'quiet',
+        challengeEn: 'Name something quiet',
+        challengeJp: 'しずかなものはなにがあるかな？',
+        image: 'https://raw.githubusercontent.com/LuissForce/panic-pairs/main/q%404x.png',
+        alt: 'Q letter card'
+      },
+      {
+        letter: 'R = r',
+        word: 'Rice',
+        challengeEn: 'What do you like to eat rice with?',
+        challengeJp: 'ごはんはなにといっしょにたべるのがすき？',
+        image: 'https://raw.githubusercontent.com/LuissForce/panic-pairs/main/r%404x.png',
+        alt: 'R letter card'
+      },
+      {
+        letter: 'T = t',
+        word: 'Toys',
+        challengeEn: 'What toys do you like to play with?',
+        challengeJp: 'すきな「おもちゃ」は？',
+        image: 'https://raw.githubusercontent.com/LuissForce/panic-pairs/main/t%404x.png',
+        alt: 'T letter card'
+      }
+    ];
+
+    let currentLetterCard = 0;
+
+    const letterCardImage = document.getElementById('letter-card-image');
+    const letterCardLetter = document.getElementById('letter-card-letter');
+    const letterCardWord = document.getElementById('letter-card-word');
+    const letterCardChallengeEn = document.getElementById('letter-card-challenge-en');
+    const letterCardChallengeJp = document.getElementById('letter-card-challenge-jp');
+    const prevLetterCardButton = document.getElementById('prev-letter-card');
+    const nextLetterCardButton = document.getElementById('next-letter-card');
+
+    function showLetterCard(index) {
+      const card = letterCards[index];
+      letterCardImage.src = card.image;
+      letterCardImage.alt = card.alt;
+      letterCardLetter.textContent = card.letter;
+      letterCardWord.textContent = card.word;
+      letterCardChallengeEn.textContent = card.challengeEn;
+      letterCardChallengeJp.textContent = card.challengeJp;
+    }
+
+    prevLetterCardButton.addEventListener('click', () => {
+      currentLetterCard = (currentLetterCard - 1 + letterCards.length) % letterCards.length;
+      showLetterCard(currentLetterCard);
+    });
+
+    nextLetterCardButton.addEventListener('click', () => {
+      currentLetterCard = (currentLetterCard + 1) % letterCards.length;
+      showLetterCard(currentLetterCard);
+    });
+
+    /* Chance card carousel data */
+    const chanceCards = [
+      {
+        name: 'リバース (Reverse)：',
+        description: 'まわるじゅんばんがぎゃくになります。（みぎにすわっているプレイヤーのカードを引きます。）',
+        image: 'https://raw.githubusercontent.com/LuissForce/panic-pairs/main/reverse%404x.png',
+        alt: 'Reverse card'
+      },
+      {
+        name: 'カードストーム (Card Storm)：',
+        description: 'ほかのプレイヤーぜんいんが、じぶんのてもちのカードから1まいずつえらび、カードを1まいずつわたします。',
+        image: 'https://raw.githubusercontent.com/LuissForce/panic-pairs/main/card%20storm%404x.png',
+        alt: 'Card Storm card'
+      },
+      {
+        name: 'プレゼント (Present)：',
+        description: 'じぶんのカードを2まい、すきなプレイヤーにあげられます。',
+        image: 'https://raw.githubusercontent.com/LuissForce/panic-pairs/main/Present%404x.png',
+        alt: 'Present card'
+      },
+      {
+        name: 'スキップ (Skip)：',
+        description: 'いっかいお休み。',
+        image: 'https://raw.githubusercontent.com/LuissForce/panic-pairs/main/SKip%404x.png',
+        alt: 'Skip card'
+      },
+      {
+        name: 'スワップ (Swap)：',
+        description: 'プレイヤーをひとりえらんで、てふだのカードをぜんぶとりかえます。',
+        image: 'https://raw.githubusercontent.com/LuissForce/panic-pairs/main/Swap%404x.png',
+        alt: 'Swap card'
+      },
+      {
+        name: 'ルック＆ピック (Look & Pick)：',
+        description: 'みんなのカードを見せてもらって、好きなカードを1まいもらえます。',
+        image: 'https://raw.githubusercontent.com/LuissForce/panic-pairs/main/Look%20and%20pick%404x.png',
+        alt: 'Look and Pick card'
+      }
+    ];
+
+    let currentChanceCard = 0;
+
+    const chanceCardImage = document.getElementById('chance-card-image');
+    const chanceCardTitle = document.getElementById('chance-card-title');
+    const chanceCardDescription = document.getElementById('chance-card-description');
+    const prevCardButton = document.getElementById('prev-card');
+    const nextCardButton = document.getElementById('next-card');
+
+    function showChanceCard(index) {
+      const card = chanceCards[index];
+      chanceCardImage.src = card.image;
+      chanceCardImage.alt = card.alt;
+      chanceCardTitle.textContent = card.name;
+      chanceCardDescription.textContent = card.description;
+    }
+
+    prevCardButton.addEventListener('click', () => {
+      currentChanceCard = (currentChanceCard - 1 + chanceCards.length) % chanceCards.length;
+      showChanceCard(currentChanceCard);
+    });
+
+    nextCardButton.addEventListener('click', () => {
+      currentChanceCard = (currentChanceCard + 1) % chanceCards.length;
+      showChanceCard(currentChanceCard);
+    });
+
+    const topButtons = document.querySelectorAll('.collapse-top-button');
+
+    topButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const openSections = document.querySelectorAll('.expandable.open');
+
+        openSections.forEach((section) => {
+          section.classList.remove('open');
+        });
+
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
