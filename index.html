@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Responsive Logo</title>
 
+  <!-- Google Font: Zen Maru Gothic -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+
   <style>
     /* ==============================
        GLOBAL RESET
@@ -23,6 +28,7 @@
 
     /* Main page background color */
     body {
+      font-family: 'Zen Maru Gothic', sans-serif;
       background: #f8f4f1;
       animation: pageFadeIn 0.45s ease both;
       font-weight: 400;
@@ -168,20 +174,37 @@
 
     /* Button text that opens and closes each expandable section */
     .expand-button {
-      background: none;
-      border: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: rgba(255,255,255,0.14);
+      border: 2px solid rgba(255,255,255,0.35);
+      border-radius: 999px;
       color: white;
-      font-size: clamp(1rem, 1.8vw, 1.7rem);
+      font-size: clamp(0.95rem, 1.5vw, 1.35rem);
       text-decoration: none;
       cursor: pointer;
       min-height: 44px;
       padding: 6px 14px;
-      transition: transform 0.25s ease, opacity 0.25s ease;
+      transition: transform 0.25s ease, opacity 0.25s ease, background 0.25s ease, border-color 0.25s ease;
     }
 
     .expand-button:hover {
-      transform: scale(1.04);
-      opacity: 0.92;
+      transform: translateY(-2px) scale(1.03);
+      opacity: 1;
+      background: rgba(255,255,255,0.22);
+      border-color: rgba(255,255,255,0.55);
+    }
+
+    .expand-button::after {
+      content: '▾';
+      font-size: 0.9em;
+      transition: transform 0.25s ease;
+    }
+
+    .expandable.open .expand-button::after {
+      transform: rotate(180deg);
     }
 
     /* Hidden content area inside each expandable section */
@@ -393,9 +416,29 @@
     }
 
     .back-to-top a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: rgba(255,255,255,0.14);
+      border: 2px solid rgba(255,255,255,0.35);
+      border-radius: 999px;
+      padding: 8px 18px;
       color: white;
       font-size: clamp(1.2rem, 2vw, 2rem);
       text-decoration: none;
+      transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+    }
+
+    .back-to-top a::before {
+      content: '▴';
+      font-size: 0.9em;
+    }
+
+    .back-to-top a:hover {
+      transform: translateY(-2px) scale(1.03);
+      background: rgba(255,255,255,0.22);
+      border-color: rgba(255,255,255,0.55);
     }
 
     .placeholder-text {
