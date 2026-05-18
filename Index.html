@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Responsive Logo</title>
+
+  <!-- Google Font: Zen Maru Gothic -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==============================
+       GLOBAL RESET
+       Removes default spacing and makes sizing easier to control.
+    ============================== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Main page background color */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Main page background color */
+    body {
+      font-family: 'Zen Maru Gothic', sans-serif;
+      background: #f8f4f1;
+      animation: pageFadeIn 0.45s ease both;
+      font-weight: 400;
+    }
+
+    @keyframes pageFadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* ==============================
+       TOP HEADER IMAGE
+       This is the wide image at the very top of the page.
+    ============================== */
+    .header-logo {
+      width: 100%;
+      max-width: none;
+      height: auto;
+      display: block;
+    }
+
+    img {
+      width: 100%;
+      max-width: 500px;
+      height: auto;
+      display: block;
+    }
+
+    .top-header {
+      width: 100%;
+    }
+
+    /* ==============================
+       MAIN INTRO SECTION
+       Blue section with image on the left and main text on the right.
+    ============================== */
+    .hero-section {
+      width: 100%;
+      background-color: #2d86bd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 44px;
+      padding: 52px 40px;
+      flex-wrap: wrap;
+    }
+
+    .image-container {
+      flex: 1;
+      min-width: 250px;
+      max-width: 400px;
+    }
+
+    .text-container {
+      flex: 1;
+      min-width: 280px;
+      max-width: 760px;
+      color: white;
+    }
+
+    .text-container h1 {
+      font-size: clamp(1.4rem, 3.2vw, 2.4rem);
+      line-height: 1.45;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    .text-container p {
+      font-size: clamp(1rem, 2vw, 1.4rem);
+      line-height: 1.8;
+      font-weight: 400;
+    }
+
+    /* ==============================
+       FULL WIDTH IMAGE SECTION
+       This displays image 3 across the full page width.
+    ============================== */
+    .full-image-section {
+      width: 100%;
+    }
+
+    .full-width-image {
+      width: 100%;
+      max-width: none;
+      display: block;
+      height: auto;
+    }
+
+    /* ==============================
+       EXPANDABLE SECTIONS
+       These are the two big clickable sections:
+       1. Standard Rules
+       2. Advanced Mode
+    ============================== */
+    .expandable {
+      width: 100%;
+      text-align: left;
+      color: white;
+      padding: 80px 0;
+    }
+
+    .expandable-1 {
+      background-color: #7fcddd;
+    }
+
+    .expandable-2 {
+      background-color: #2d86bd;
+    }
+
+    .expandable-header {
+      text-align: center;
+      cursor: pointer;
+      padding: 8px 20px;
+      transition: transform 0.25s ease, filter 0.25s ease;
+    }
+
+    .expandable-header:hover,
+    .expandable-header:focus-within {
+      transform: translateY(-2px);
+      filter: brightness(1.04);
+    }
+
+    .expandable h2 {
+      font-size: clamp(2.4rem, 6.5vw, 5.8rem);
+      line-height: 1.1;
+      font-weight: bold;
+      text-shadow: 3px 4px 6px rgba(0, 0, 0, 0.22);
+      margin-bottom: 10px;
+    }
+
+    .expandable h3 {
+      font-size: clamp(1.6rem, 3vw, 3rem);
+      line-height: 1.2;
+      font-weight: bold;
+      text-shadow: 3px 4px 6px rgba(0, 0, 0, 0.22);
+      margin-bottom: 25px;
+    }
+
+    /* Button text that opens and closes each expandable section */
+    .expand-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: rgba(255,255,255,0.14);
+      border: 2px solid rgba(255,255,255,0.35);
+      border-radius: 999px;
+      color: white;
+      font-size: clamp(0.95rem, 1.5vw, 1.35rem);
+      text-decoration: none;
+      cursor: pointer;
+      min-height: 44px;
+      padding: 6px 14px;
+      transition: transform 0.25s ease, opacity 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+    }
+
+    .expand-button:hover {
+      transform: translateY(-2px) scale(1.03);
+      opacity: 1;
+      background: rgba(255,255,255,0.22);
+      border-color: rgba(255,255,255,0.55);
+    }
+
+    .expand-button::after {
+      content: '▾';
+      font-size: 0.9em;
+      transition: transform 0.25s ease;
+    }
+
+    .expandable.open .expand-button::after {
+      transform: rotate(180deg);
+    }
+
+    /* Hidden content area inside each expandable section */
+    .expand-content {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: max-height 0.55s ease, padding-top 0.45s ease, opacity 0.45s ease, transform 0.45s ease;
+      font-size: 1.4rem;
+    }
+
+    .expandable.open .expand-content {
+      max-height: none;
+      overflow: visible;
+      opacity: 1;
+      transform: translateY(0);
+      padding-top: 36px;
+    }
+
+    /* ==============================
+       RULE STEP 1 CARD
+       Used for the first preparation section with number, image, and text.
+    ============================== */
+    .rule-card {
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      background-color: #f8f4f1;
+      color: #222;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 48px;
+      padding: 48px 40px;
+      text-align: left;
+    }
+
+    /* Red numbered circle used for steps 1 to 5 */
+    .rule-number {
+      width: 70px;
+      height: 70px;
+      background-color: #b8142d;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      flex-shrink: 0;
+    }
+
+    .rule-image {
+      width: 260px;
+      max-width: 30%;
+      height: auto;
+      flex-shrink: 0;
+      filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.14));
+    }
+
+    .rule-text h3 {
+      color: #2d5da8;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      margin-bottom: 20px;
+      text-shadow: none;
+    }
+
+    .rule-text ul {
+      font-size: clamp(1.4rem, 2.5vw, 2.6rem);
+      line-height: 1.75;
+      font-weight: 400;
+      list-style-position: outside;
+      padding-left: 35px;
+      max-width: 980px;
+    }
+
+    /* ==============================
+       STEP CARDS
+       These are the image + text instruction rows.
+       .step-card uses beige background.
+       .step-card-white uses white background.
+    ============================== */
+    .step-card,
+    .step-card-white {
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      color: #222;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 48px;
+      padding: 48px 40px;
+      text-align: left;
+    }
+
+    .step-card-white {
+      background-color: #ffffff;
+    }
+
+    .step-card {
+      background-color: #f8f4f1;
+    }
+
+    .step-image {
+      width: 420px;
+      max-width: 40%;
+      height: auto;
+      flex-shrink: 0;
+      filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.12));
+    }
+
+    .step-text {
+      font-size: clamp(1.6rem, 2.8vw, 3rem);
+      line-height: 1.78;
+      font-weight: 400;
+      max-width: 980px;
+    }
+
+    /* ==============================
+       PLAY RULE CARDS
+       These are the 4 separated あそびかた sections.
+    ============================== */
+    .play-card {
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      color: #222;
+      display: grid;
+      grid-template-columns: 300px minmax(280px, 900px);
+      gap: 44px;
+      padding: 48px 40px;
+      text-align: left;
+      align-items: start;
+    }
+
+    .play-image {
+      width: 300px;
+      max-width: 100%;
+      height: auto;
+      filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.12));
+    }
+
+    .play-text h3 {
+      color: #2d5da8;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      text-align: left;
+      text-shadow: none;
+      margin-bottom: 28px;
+    }
+
+    .play-text p {
+      font-size: clamp(1.2rem, 2vw, 2rem);
+      line-height: 1.85;
+      font-weight: 400;
+      margin-bottom: 34px;
+    }
+
+    .rule-label {
+      display: inline-block;
+      color: white;
+      font-size: clamp(1.2rem, 2vw, 2rem);
+      font-weight: bold;
+      border-radius: 18px;
+      padding: 8px 28px;
+      margin-bottom: 12px;
+    }
+
+    .easy-rule {
+      background-color: #7bc943;
+    }
+
+    .basic-rule {
+      background-color: #38b6d8;
+    }
+
+    .hard-rule {
+      background-color: #6351a5;
+    }
+
+    /* ==============================
+       PLACEHOLDER SECTIONS
+       These are temporary sections to edit later.
+    ============================== */
+    .placeholder-section {
+      width: 100%;
+      background-color: #f8f4f1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 500px;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    /* トップにもどる button section */
+    .back-to-top {
+      width: 100%;
+      background-color: #7fcddd;
+      text-align: center;
+      padding: 20px 20px;
+      cursor: pointer;
+      transition: filter 0.25s ease, transform 0.25s ease;
+    }
+
+    .back-to-top:hover {
+      filter: brightness(1.05);
+    }
+
+    .back-to-top a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: rgba(255,255,255,0.14);
+      border: 2px solid rgba(255,255,255,0.35);
+      border-radius: 999px;
+      padding: 8px 18px;
+      color: white;
+      font-size: clamp(1.2rem, 2vw, 2rem);
+      text-decoration: none;
+      transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+    }
+
+    .back-to-top a::before {
+      content: '▴';
+      font-size: 0.9em;
+    }
+
+    .back-to-top a:hover {
+      transform: translateY(-2px) scale(1.03);
+      background: rgba(255,255,255,0.22);
+      border-color: rgba(255,255,255,0.55);
+    }
+
+    .placeholder-text {
+      font-size: clamp(2rem, 4vw, 4rem);
+      color: #333;
+      font-weight: 400;
+    }
+
+    /* ==============================
+       LETTER CARD CAROUSEL
+       Interactive card area inside expandable 1.
+       The arrows change the letter card image, letter, word, and challenge.
+    ============================== */
+    .letter-carousel {
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      color: #222;
+      display: grid;
+      grid-template-columns: minmax(280px, 520px) minmax(500px, 720px);
+      gap: 56px;
+      align-items: center;
+      justify-content: center;
+      padding: 56px 60px;
+    }
+
+    .letter-card-image {
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto;
+      filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.14));
+      transition: opacity 0.22s ease, transform 0.22s ease;
+    }
+
+    .letter-info-area {
+      width: 100%;
+      max-width: 720px;
+      justify-self: stretch;
+    }
+
+    /* The colored information bars now expand to fit larger screen widths */
+    .letter-row,
+    .word-row,
+    .challenge-row {
+      color: white;
+      font-size: clamp(1.3rem, 2.5vw, 2.4rem);
+      font-weight: bold;
+      text-align: center;
+      padding: 10px 18px;
+      margin-bottom: 12px;
+      border-radius: 8px;
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.08);
+      transition: opacity 0.22s ease, transform 0.22s ease;
+    }
+
+    .letter-row {
+      background-color: #86c63a;
+    }
+
+    .word-row {
+      background-color: #35b6d8;
+    }
+
+    .challenge-row {
+      background-color: #6351a5;
+      line-height: 1.3;
+    }
+
+    /* ==============================
+       CHANCE CARD CAROUSEL
+       Interactive card area inside expandable 2.
+       The arrows change the card image, title, and description.
+    ============================== */
+    .chance-carousel {
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      background-color: #f8f4f1;
+      color: #222;
+      display: grid;
+      grid-template-columns: minmax(220px, 420px) minmax(500px, 720px);
+      gap: 60px;
+      align-items: start;
+      justify-content: center;
+      padding: 56px 60px;
+    }
+
+    .carousel-card-image {
+      width: 100%;
+      max-width: 360px;
+      margin: 0 auto;
+      filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.14));
+      transition: opacity 0.22s ease, transform 0.22s ease;
+    }
+
+    .carousel-controls {
+      display: grid;
+      grid-template-columns: 56px 1fr 56px;
+      align-items: center;
+      gap: 18px;
+      width: 100%;
+      max-width: 720px;
+      margin-bottom: 18px;
+    }
+
+    .carousel-controls .carousel-dots {
+      margin-top: 0;
+    }
+
+    .carousel-button {
+      background-color: #2d86bd;
+      color: white;
+      border: none;
+      width: 56px;
+      height: 48px;
+      font-size: 2rem;
+      font-weight: bold;
+      cursor: pointer;
+      line-height: 1;
+      border-radius: 8px;
+      box-shadow: 0 5px 8px rgba(0, 0, 0, 0.14);
+      transition: transform 0.22s ease, filter 0.22s ease;
+    }
+
+    .carousel-button:hover,
+    .carousel-button:focus {
+      filter: brightness(1.08);
+      transform: translateY(-2px) scale(1.04);
+    }
+
+    .carousel-button.spin {
+      transform: rotate(180deg) scale(1.04);
+    }
+
+    .carousel-title {
+      display: inline-block;
+      color: white;
+      background: linear-gradient(90deg, #783aa3, #174ea6);
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-size: clamp(1.3rem, 2.3vw, 2.2rem);
+      font-weight: bold;
+      margin-bottom: 18px;
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.08);
+      transition: opacity 0.22s ease, transform 0.22s ease;
+    }
+
+    .carousel-description {
+      font-size: clamp(1.4rem, 2.4vw, 2.5rem);
+      line-height: 1.75;
+      font-weight: 400;
+      max-width: 980px;
+      transition: opacity 0.22s ease, transform 0.22s ease;
+    }
+
+    .carousel-fade {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .carousel-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: none;
+      background-color: rgba(45, 134, 189, 0.35);
+      cursor: pointer;
+      transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+
+    .carousel-dot.active {
+      background-color: #2d86bd;
+      transform: scale(1.25);
+    }
+
+    /* ==============================
+       FOOTER
+       Copyright area at the bottom.
+    ============================== */
+    .footer {
+      width: 100%;
+      background-color: #3d4146;
+      color: white;
+      text-align: center;
+      padding: 18px 20px;
+      font-size: clamp(0.8rem, 1.4vw, 1.5rem);
+      font-weight: 400;
+    }
+
+    button:focus-visible,
+    a:focus-visible,
+    .expandable-header:focus-visible,
+    .back-to-top:focus-visible {
+      outline: 3px solid rgba(255, 255, 255, 0.9);
+      outline-offset: 4px;
+    }
+
+    /* ==============================
+       MOBILE RESPONSIVE STYLES
+       These rules make the layout stack nicely on phones.
+    ============================== */
+    @media (max-width: 768px) {
+      .letter-carousel,
+      .chance-carousel,
+      .play-card,
+      .step-card,
+      .step-card-white,
+      .rule-card {
+        width: calc(100% - 24px);
+        margin-left: auto;
+        margin-right: auto;
+      }
+      /* Smaller carousel dots on phones so all dots fit between arrows */
+      .carousel-dots {
+        gap: 5px;
+      }
+
+      .carousel-dot {
+        width: 7px;
+        height: 7px;
+      }
+
+      /* Smaller hero cards on phones */
+      .image-container img {
+        max-width: 260px;
+        margin: 0 auto;
+      }
+
+      .hero-section {
+        flex-direction: column;
+        text-align: center;
+        padding: 34px 16px;
+        gap: 28px;
+      }
+
+      .rule-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 36px 16px;
+        gap: 24px;
+      }
+
+      .rule-image {
+        max-width: 80%;
+      }
+
+      .rule-text ul {
+        text-align: left;
+      }
+
+      .play-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 36px 16px;
+        gap: 24px;
+      }
+
+      .play-image {
+        margin: 0 auto;
+      }
+
+      .play-text p {
+        text-align: center;
+      }
+
+      .play-text h3 {
+        text-align: center;
+      }
+
+      .step-text {
+        text-align: center;
+      }
+
+      .rule-text ul {
+        text-align: center;
+        list-style-position: inside;
+        padding-left: 0;
+      }
+
+      .step-card,
+      .step-card-white {
+        flex-direction: column;
+        text-align: center;
+        padding: 36px 16px;
+        gap: 24px;
+      }
+
+      .step-image {
+        max-width: 90%;
+      }
+
+      .step-text {
+        text-align: left;
+      }
+
+      .letter-carousel,
+      .chance-carousel {
+        grid-template-columns: 1fr;
+        gap: 26px;
+        padding: 38px 16px;
+      }
+
+      .letter-card-image {
+        max-width: 230px;
+      }
+
+      .letter-info-area {
+        max-width: none;
+      }
+
+      .carousel-card-image {
+        max-width: 280px;
+      }
+
+      .carousel-controls {
+        max-width: none;
+      }
+    }
+  </style>
+</head>
+<body id="top">
+
+  <!-- TOP OF PAGE TARGET
+       The id="top" lets the トップにもどる buttons scroll here. -->
+
+  <!-- HEADER SECTION
+       Wide logo/header image at the top. -->
+  <header class="top-header">
+    <img class="header-logo" src="https://kids-up.jp/misc/panic-pairs/images/panicheader.png" alt="Panic Pairs Logo">
+  </header>
+
+  <!-- INTRO / HERO SECTION
+       Blue section with cards image and main explanation text. -->
+  <section class="hero-section">
+    <div class="image-container">
+      <img src="https://kids-up.jp/misc/panic-pairs/images/panicrule18.png" alt="Alphabet Cards">
+    </div>
+
+    <div class="text-container">
+      <h1>おなじアルファベットの「おおもじ」と「こもじ」でペアをつくって、手もちのカードをなくそう!</h1>
+      <p>Get rid of all your cards by making uppercase and lowercase letter matches.</p>
+
+          </div>
+  </section>
+
+  <!-- VIDEO SECTION -->
+  <section style="width:100%; background:#f8f4f1; padding:42px 20px 24px; text-align:center;">
+    <div style="max-width:900px; margin:0 auto; display:flex; flex-direction:column; gap:16px; align-items:center;">
+      <p style="font-size:clamp(1rem, 1.6vw, 1.35rem); line-height:1.7; color:#2d5da8; font-weight:700;">
+        あそびかたを動画でチェックしよう！
+      </p>
+
+      <div style="position:relative; width:100%; max-width:760px; aspect-ratio:16 / 9; border-radius:18px; overflow:hidden; box-shadow:0 10px 24px rgba(0,0,0,0.18);">
+        <iframe
+          src="https://player.vimeo.com/video/1193161247?share=copy&fl=sv&fe=ci"
+          style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;"
+          allow="autoplay; fullscreen; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- FULL WIDTH IMAGE SECTION
+       Displays the large image under the hero section. -->
+  <section class="full-image-section">
+    <img class="full-width-image" src="https://kids-up.jp/misc/panic-pairs/images/panicrule1.png" alt="Panic Pairs Section Image">
+  </section>
+
+  <!-- EXPANDABLE 1: STANDARD RULES
+       This section opens when the user taps "くわしく見る". -->
+  <section class="expandable expandable-1">
+    <div class="expandable-header">
+      <h2>スタンダードルール</h2>
+      <button class="expand-button">くわしく見る</button>
+    </div>
+    <div class="expand-content">
+      <!-- Step 1: Preparation instructions -->
+      <div class="rule-card">
+        <div class="rule-number">1</div>
+        <img class="rule-image" src="https://kids-up.jp/misc/panic-pairs/images/panicrule2.png" alt="Game setup cards">
+        <div class="rule-text">
+          <h3>じゅんび</h3>
+          <ul>
+            <li>「CHANCE CARDS」を6まいぬいておく</li>
+            <li>カードをまぜて、みんなにくばる（プレイヤーによってまいすうがちがってもだいじょうぶです）</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Play rule section 1: How to play overview -->
+      <div class="play-card">
+        <img class="play-image" src="https://kids-up.jp/misc/panic-pairs/images/panicrule17.png" alt="How to play examples">
+        <div class="play-text">
+          <h3>あそびかた</h3>
+          <p>手もちのカードでペアになるカードを出します。<br>ペアを出すときのルールをプレイヤーごとにえらんでね。</p>
+        </div>
+      </div>
+
+      <!-- Play rule section 2: Easy rule -->
+      <div class="play-card">
+        <img class="play-image" src="https://kids-up.jp/misc/panic-pairs/images/panicrule4.png" alt="Easy rule">
+        <div class="play-text">
+          <div class="rule-label easy-rule">かんたんルール:</div>
+          <p>アルファベットまたはおとをいう。</p>
+        </div>
+      </div>
+
+      <!-- Play rule section 3: Basic rule -->
+      <div class="play-card">
+        <img class="play-image" src="https://kids-up.jp/misc/panic-pairs/images/panicrule5.png" alt="Basic rule">
+        <div class="play-text">
+          <div class="rule-label basic-rule">きほんルール:</div>
+          <p>カードにかかれていることばをいう。</p>
+        </div>
+      </div>
+
+      <!-- Play rule section 4: Hard rule -->
+      <div class="play-card">
+        <img class="play-image" src="https://kids-up.jp/misc/panic-pairs/images/panicrule6.png" alt="Hard rule">
+        <div class="play-text">
+          <div class="rule-label hard-rule">むずかしいルール:</div>
+          <p>カードのしつもんにこたえる。</p>
+        </div>
+      </div>
+
+      <!-- LETTER CARD DETAILS CAROUSEL -->
+      <section class="letter-carousel" id="letter-card-details">
+        <div class="letter-image-area">
+          <img id="letter-card-image" class="letter-card-image" src="https://kids-up.jp/misc/panic-pairs/images/paniclettera.png" alt="A letter card">
+        </div>
+
+        <div class="letter-info-area">
+          <div class="carousel-controls">
+            <button class="carousel-button" id="prev-letter-card" type="button">&lt;</button>
+
+            <div class="carousel-dots" id="letter-card-dots" aria-label="Letter card carousel navigation"></div>
+
+            <button class="carousel-button" id="next-letter-card" type="button">&gt;</button>
+          </div>
+
+          <div id="letter-card-letter" class="letter-row">A = a</div>
+          <div id="letter-card-word" class="word-row">ants</div>
+          <div class="challenge-row">
+            <div id="letter-card-challenge-en">What insects do you like?</div>
+            <div id="letter-card-challenge-jp">すきな「むし」は？</div>
+          </div>
+
+          </div>
+      </section>
+
+      <div class="step-card">
+        <div class="rule-number">2</div>
+        <img class="step-image" src="https://kids-up.jp/misc/panic-pairs/images/panicrule7.png" alt="Player drawing card">
+        <div class="step-text">
+          いちばんとししたのプレイヤーから、ひだりにすわっているプレイヤーのカードを1まいひいてスタートします。
+        </div>
+      </div>
+
+      <div class="step-card-white">
+        <div class="rule-number">3</div>
+        <img class="step-image" src="https://kids-up.jp/misc/panic-pairs/images/panicrule8.png" alt="Matching card example">
+        <div class="step-text">
+          ペアができたら、1できめたルールにしたがって出してね。<br>
+          ペアにならないカードは、そのままもっていよう。
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="rule-number">4</div>
+        <img class="step-image" src="https://kids-up.jp/misc/panic-pairs/images/panicrule9.png" alt="Players taking turns">
+        <div class="step-text">
+          とけいまわりでゲームをつづけます。
+        </div>
+      </div>
+
+      <div class="step-card-white">
+        <div class="rule-number">5</div>
+        <img class="step-image" src="https://kids-up.jp/misc/panic-pairs/images/panicrule10.png" alt="Winning and losing condition">
+        <div class="step-text">
+          手もちのカードがぜんぶなくなったプレイヤーのかち!<br><br>
+          さいごまでドクター・ダウトカードをもっていたプレイヤーがまけです。
+        </div>
+      </div>
+
+      
+
+      <!-- LETTER GAME EDUCATIONAL NOTE -->
+      <div class="step-card-white">
+        <div class="step-text" style="text-align:center; width:100%; font-size:clamp(1rem, 1.6vw, 1.6rem); line-height:1.5;">
+          ※このゲームを通して、子供たちは楽しく遊びながら大文字と小文字の違いを学びます。<br>
+          使用されているアルファベットは大文字と小文字の形状が違うもののみとなります。
+        </div>
+      </div>
+
+      <div class="back-to-top collapse-top-button">
+        <a href="#top">トップにもどる</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPANDABLE 2: ADVANCED MODE
+       This section explains the chance cards. -->
+  <section class="expandable expandable-2">
+    <div class="expandable-header">
+      <h2>じょうきゅうしゃモード</h2>
+      <h3>CHANCE CARDSをつかおう!</h3>
+      <button class="expand-button">くわしく見る</button>
+    </div>
+    <div class="expand-content">
+      <div class="step-card-white">
+        <img class="step-image" src="https://kids-up.jp/misc/panic-pairs/images/panicrule11.png" alt="Chance cards deck">
+        <div class="step-text">
+          きほんルールになれてきたら、6まいの「チャンスカード」をつかってじょうきゅうルールにちょうせんしよう!<br>
+          じゅんび: 6まいのチャンスカードをよくまぜて、うらにしてテーブルのまんなかにおいてね。
+        </div>
+      </div>
+
+      <div class="step-card">
+        <img class="step-image" src="https://kids-up.jp/misc/panic-pairs/images/panicrule12.png" alt="Using chance cards">
+        <div class="step-text">
+          つかいかた: 「ドクター・ダウト」をもっていたら、じぶんのばんにチャンスカードを1枚引くことができます。
+        </div>
+      </div>
+
+      <div class="step-card-white">
+        <img class="step-image" src="https://kids-up.jp/misc/panic-pairs/images/panicrule13.png" alt="Show chance card">
+        <div class="step-text">
+          みんなにチャンスカードを見せます。
+        </div>
+      </div>
+
+      <div class="step-card-white">
+        <img class="step-image" src="https://kids-up.jp/misc/panic-pairs/images/panicrule14.png" alt="Draw chance card">
+        <div class="step-text">
+          チャンスカードを1まい引いて、カードにかいてあるとおりにします。
+        </div>
+      </div>
+
+      <div class="step-card-white">
+        <img class="step-image" src="https://kids-up.jp/misc/panic-pairs/images/panicrule15.png" alt="Discard chance card">
+        <div class="step-text">
+          つかったチャンスカードはよけておきます。
+        </div>
+      </div>
+
+      <div class="step-card">
+        <img class="step-image" src="https://kids-up.jp/misc/panic-pairs/images/panicrule16.png" alt="Continue the game">
+        <div class="step-text">
+          ひだりのプレイヤーからカードを引いてゲームをつづけます。<br>
+          （チャンスカードがスキップカードのときはつぎのプレイヤーがカードを引きます。）
+        </div>
+      </div>
+
+      <div class="step-card-white">
+        <div class="step-text">
+          ※チャンスカードがぜんぶなくなったら、きほんルールにもどります。<br>
+          いちどつかったチャンスカードはつかえません。<br><br>
+
+          ※じぶんのばんがきたときに引けるチャンスカードは1まいですが、つぎのじぶんのばんがきたときにまだドクター・ダウトカードをもっているばあい、またチャンスカードを引くことができます。
+        </div>
+      </div>
+          <!-- CHANCE CARD DETAILS PLACEHOLDER
+           Temporary section to edit later. -->
+          <section class="chance-carousel" id="chance-card-details">
+        <!-- Chance card carousel image -->
+        <div class="carousel-image-area">
+          <img id="chance-card-image" class="carousel-card-image" src="https://kids-up.jp/misc/panic-pairs/images/panicreverse.png" alt="Reverse card">
+        </div>
+
+        <!-- Chance card carousel text and controls -->
+        <div class="carousel-text-area">
+          <div class="carousel-controls">
+            <button class="carousel-button" id="prev-card" type="button">&lt;</button>
+
+            <div class="carousel-dots" id="chance-card-dots" aria-label="Chance card carousel navigation"></div>
+
+            <button class="carousel-button" id="next-card" type="button">&gt;</button>
+          </div>
+
+          <div id="chance-card-title" class="carousel-title">リバース (Reverse)：</div>
+          <div id="chance-card-description" class="carousel-description">
+            まわるじゅんばんがぎゃくになります。（みぎにすわっているプレイヤーのカードを引きます。）
+          </div>
+
+          </div>
+      </section>
+
+      <div class="back-to-top collapse-top-button">
+        <a href="#top">トップにもどる</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER SECTION -->
+  <footer class="footer">
+    © 2026 Kids-UP co., Ltd. All Rights Reserved.
+  </footer>
+
+  <!-- JAVASCRIPT
+       Handles opening/collapsing sections and トップにもどる behavior. -->
+  <script>
+    const expandableHeaders = document.querySelectorAll('.expandable-header');
+
+    expandableHeaders.forEach((header) => {
+      header.addEventListener('click', () => {
+        const section = header.closest('.expandable');
+        section.classList.toggle('open');
+      });
+    });
+
+    /* Letter card carousel data */
+    const letterCards = [
+      {
+        letter: 'A = a',
+        word: 'ants',
+        challengeEn: 'What insects do you like?',
+        challengeJp: 'すきな「むし」は？',
+        image: 'https://kids-up.jp/misc/panic-pairs/images/paniclettera.png',
+        alt: 'A letter card'
+      },
+      {
+        letter: 'B = b',
+        word: 'banana',
+        challengeEn: 'What do bananas grow on?',
+        challengeJp: 'バナナはなににできるの？',
+        image: 'https://kids-up.jp/misc/panic-pairs/images/panicletterb.png',
+        alt: 'B letter card'
+      },
+      {
+        letter: 'D = d',
+        word: 'dance',
+        challengeEn: 'What do you like to do?',
+        challengeJp: 'なにをするのがすき？',
+        image: 'https://kids-up.jp/misc/panic-pairs/images/panicletterd.png',
+        alt: 'D letter card'
+      },
+      {
+        letter: 'E = e',
+        word: 'elephant',
+        challengeEn: 'Name another big animal!',
+        challengeJp: '大きなどうぶつをもう1ついってみて！',
+        image: 'https://kids-up.jp/misc/panic-pairs/images/paniclettere.png',
+        alt: 'E letter card'
+      },
+      {
+        letter: 'F = f',
+        word: 'fish',
+        challengeEn: 'Name another animal that lives in water!',
+        challengeJp: '水のなかにすんでいるほかの「どうぶつ」はなにがいるかな？',
+        image: 'https://kids-up.jp/misc/panic-pairs/images/panicletterf.png',
+        alt: 'F letter card'
+      },
+      {
+        letter: 'G = g',
+        word: 'ghost',
+        challengeEn: 'Name another Halloween character!',
+        challengeJp: 'ハロウィーンの「キャラクター」はほかになにがいるかな？',
+        image: 'https://kids-up.jp/misc/panic-pairs/images/panicletterg.png',
+        alt: 'G letter card'
+      },
+      {
+        letter: 'H = h',
+        word: 'hot',
+        challengeEn: "How's the weather like?",
+        challengeJp: 'きょうのてんきは？',
+        image: 'https://kids-up.jp/misc/panic-pairs/images/panicletterh.png',
+        alt: 'H letter card'
+      },
+      {
+        letter: 'I = i',
+        word: 'igloo',
+        challengeEn: 'What do you like to do on snowy days?',
+        challengeJp: 'ゆきの日はなにをしてあそぶのがすき？',
+        image: 'https://kids-up.jp/misc/panic-pairs/images/panicletteri.png',
+        alt: 'I letter card'
+      },
+      {
+        letter: 'L = l',
+        word: 'lion',
+        challengeEn: "What's your favorite animal?",
+        challengeJp: 'すきな「どうぶつ」は？',
+        image: 'https://kids-up.jp/misc/panic-pairs/images/panicletterl.png',
+        alt: 'L letter card'
+      },
+      {
+        letter: 'N = n',
+        word: 'net',
+        challengeEn: 'Say another word with "n" in it!',
+        challengeJp: '「n」が入っていることばをもう1ついってみて！',
+        image: 'https://kids-up.jp/misc/panic-pairs/images/paniclettern.png',
+        alt: 'N letter card'
+      },
+      {
+        letter: 'Q = q',
+        word: 'quiet',
+        challengeEn: 'Name something quiet.',
+        challengeJp: 'しずかなものはなにがあるかな？',
+        image: 'https://kids-up.jp/misc/panic-pairs/images/panicletterq.png',
+        alt: 'Q letter card'
+      },
+      {
+        letter: 'R = r',
+        word: 'rice',
+        challengeEn: 'What do you like to eat rice with?',
+        challengeJp: 'ごはんはなにといっしょにたべるのがすき？',
+        image: 'https://kids-up.jp/misc/panic-pairs/images/panicletterr.png',
+        alt: 'R letter card'
+      },
+      {
+        letter: 'T = t',
+        word: 'toys',
+        challengeEn: 'What toys do you like to play with?',
+        challengeJp: 'すきな「おもちゃ」は？',
+        image: 'https://kids-up.jp/misc/panic-pairs/images/paniclettert.png',
+        alt: 'T letter card'
+      }
+    ];
+
+    let currentLetterCard = 0;
+
+    const letterCardImage = document.getElementById('letter-card-image');
+    const letterCardLetter = document.getElementById('letter-card-letter');
+    const letterCardWord = document.getElementById('letter-card-word');
+    const letterCardChallengeEn = document.getElementById('letter-card-challenge-en');
+    const letterCardChallengeJp = document.getElementById('letter-card-challenge-jp');
+    const prevLetterCardButton = document.getElementById('prev-letter-card');
+    const nextLetterCardButton = document.getElementById('next-letter-card');
+    const letterCardDots = document.getElementById('letter-card-dots');
+
+    function createDots(container, items, activeIndex, clickHandler) {
+      container.innerHTML = '';
+
+      items.forEach((item, index) => {
+        const dot = document.createElement('button');
+        dot.className = index === activeIndex ? 'carousel-dot active' : 'carousel-dot';
+        dot.type = 'button';
+        dot.setAttribute('aria-label', `Go to item ${index + 1}`);
+        dot.addEventListener('click', () => clickHandler(index));
+        container.appendChild(dot);
+      });
+    }
+
+    function animateCarouselChange(elements, button, updateContent) {
+      elements.forEach((element) => element.classList.add('carousel-fade'));
+      button.classList.add('spin');
+
+      setTimeout(() => {
+        updateContent();
+        elements.forEach((element) => element.classList.remove('carousel-fade'));
+        button.classList.remove('spin');
+      }, 180);
+    }
+
+    function showLetterCard(index, button = nextLetterCardButton) {
+      currentLetterCard = index;
+      animateCarouselChange(
+        [letterCardImage, letterCardLetter, letterCardWord, letterCardChallengeEn, letterCardChallengeJp],
+        button,
+        () => {
+          const card = letterCards[currentLetterCard];
+          letterCardImage.src = card.image;
+          letterCardImage.alt = card.alt;
+          letterCardLetter.textContent = card.letter;
+          letterCardWord.textContent = card.word;
+          letterCardChallengeEn.textContent = card.challengeEn;
+          letterCardChallengeJp.textContent = card.challengeJp;
+          createDots(letterCardDots, letterCards, currentLetterCard, (dotIndex) => showLetterCard(dotIndex));
+        }
+      );
+    }
+
+    createDots(letterCardDots, letterCards, currentLetterCard, (dotIndex) => showLetterCard(dotIndex));
+
+    prevLetterCardButton.addEventListener('click', () => {
+      showLetterCard((currentLetterCard - 1 + letterCards.length) % letterCards.length, prevLetterCardButton);
+    });
+
+    nextLetterCardButton.addEventListener('click', () => {
+      showLetterCard((currentLetterCard + 1) % letterCards.length, nextLetterCardButton);
+    });
+
+    /* Chance card carousel data */
+    const chanceCards = [
+      {
+        name: 'リバース (Reverse)：',
+        description: 'まわるじゅんばんがぎゃくになります。（みぎにすわっているプレイヤーのカードを引きます。）',
+        image: 'https://kids-up.jp/misc/panic-pairs/images/panicreverse.png',
+        alt: 'Reverse card'
+      },
+      {
+        name: 'カードストーム (Card Storm)：',
+        description: 'ほかのプレイヤーぜんいんが、じぶんのてもちのカードから1まいずつえらび、カードを1まいずつわたします。',
+        image: 'https://kids-up.jp/misc/panic-pairs/images/paniccardstorm.png',
+        alt: 'Card Storm card'
+      },
+      {
+        name: 'プレゼント (Present)：',
+        description: 'じぶんのカードを2まい、すきなプレイヤーにあげられます。',
+        image: 'https://kids-up.jp/misc/panic-pairs/images/panicpresent.png',
+        alt: 'Present card'
+      },
+      {
+        name: 'スキップ (Skip)：',
+        description: 'いっかいお休み。',
+        image: 'https://kids-up.jp/misc/panic-pairs/images/panicskip.png',
+        alt: 'Skip card'
+      },
+      {
+        name: 'スワップ (Swap)：',
+        description: 'プレイヤーをひとりえらんで、てふだのカードをぜんぶとりかえます。',
+        image: 'https://kids-up.jp/misc/panic-pairs/images/panicswap.png',
+        alt: 'Swap card'
+      },
+      {
+        name: 'ルック＆ピック (Look & Pick)：',
+        description: 'みんなのカードを見せてもらって、好きなカードを1まいもらえます。',
+        image: 'https://kids-up.jp/misc/panic-pairs/images/paniclookandpick.png',
+        alt: 'Look and Pick card'
+      }
+    ];
+
+    let currentChanceCard = 0;
+
+    const chanceCardImage = document.getElementById('chance-card-image');
+    const chanceCardTitle = document.getElementById('chance-card-title');
+    const chanceCardDescription = document.getElementById('chance-card-description');
+    const prevCardButton = document.getElementById('prev-card');
+    const nextCardButton = document.getElementById('next-card');
+    const chanceCardDots = document.getElementById('chance-card-dots');
+
+    function showChanceCard(index, button = nextCardButton) {
+      currentChanceCard = index;
+      animateCarouselChange(
+        [chanceCardImage, chanceCardTitle, chanceCardDescription],
+        button,
+        () => {
+          const card = chanceCards[currentChanceCard];
+          chanceCardImage.src = card.image;
+          chanceCardImage.alt = card.alt;
+          chanceCardTitle.textContent = card.name;
+          chanceCardDescription.textContent = card.description;
+          createDots(chanceCardDots, chanceCards, currentChanceCard, (dotIndex) => showChanceCard(dotIndex));
+        }
+      );
+    }
+
+    createDots(chanceCardDots, chanceCards, currentChanceCard, (dotIndex) => showChanceCard(dotIndex));
+
+    prevCardButton.addEventListener('click', () => {
+      showChanceCard((currentChanceCard - 1 + chanceCards.length) % chanceCards.length, prevCardButton);
+    });
+
+    nextCardButton.addEventListener('click', () => {
+      showChanceCard((currentChanceCard + 1) % chanceCards.length, nextCardButton);
+    });
+
+    function addSwipeSupport(area, onSwipeLeft, onSwipeRight) {
+      let startX = 0;
+      let startY = 0;
+
+      area.addEventListener('touchstart', (event) => {
+        startX = event.touches[0].clientX;
+        startY = event.touches[0].clientY;
+      }, { passive: true });
+
+      area.addEventListener('touchend', (event) => {
+        const endX = event.changedTouches[0].clientX;
+        const endY = event.changedTouches[0].clientY;
+        const diffX = endX - startX;
+        const diffY = endY - startY;
+
+        if (Math.abs(diffX) > 50 && Math.abs(diffX) > Math.abs(diffY)) {
+          if (diffX < 0) {
+            onSwipeLeft();
+          } else {
+            onSwipeRight();
+          }
+        }
+      }, { passive: true });
+    }
+
+    addSwipeSupport(
+      document.getElementById('letter-card-details'),
+      () => showLetterCard((currentLetterCard + 1) % letterCards.length, nextLetterCardButton),
+      () => showLetterCard((currentLetterCard - 1 + letterCards.length) % letterCards.length, prevLetterCardButton)
+    );
+
+    addSwipeSupport(
+      document.getElementById('chance-card-details'),
+      () => showChanceCard((currentChanceCard + 1) % chanceCards.length, nextCardButton),
+      () => showChanceCard((currentChanceCard - 1 + chanceCards.length) % chanceCards.length, prevCardButton)
+    );
+
+    const topButtons = document.querySelectorAll('.collapse-top-button');
+
+    topButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const openSections = document.querySelectorAll('.expandable.open');
+
+        openSections.forEach((section) => {
+          section.classList.remove('open');
+        });
+
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
