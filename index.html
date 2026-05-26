@@ -21,7 +21,6 @@
       box-sizing: border-box;
     }
 
-    /* Main page background color */
     html {
       scroll-behavior: smooth;
     }
@@ -108,6 +107,50 @@
     }
 
     /* ==============================
+       VIDEO SECTION
+    ============================== */
+    .video-section {
+      width: 100%;
+      background-color: #f8f4f1;
+      padding: 42px 20px 24px;
+      text-align: center;
+    }
+
+    .video-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .video-title {
+      color: #2d5da8;
+      font-size: clamp(1rem, 1.6vw, 1.35rem);
+      line-height: 1.7;
+      font-weight: 700;
+    }
+
+    .video-frame {
+      position: relative;
+      width: 100%;
+      max-width: 760px;
+      aspect-ratio: 16 / 9;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+    }
+
+    .video-frame iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* ==============================
        FULL WIDTH IMAGE SECTION
        This displays image 3 across the full page width.
     ============================== */
@@ -143,6 +186,22 @@
       background-color: #2d86bd;
     }
 
+    .expandable-1 .expand-button {
+      background: #2D86BD;
+    }
+
+    .expandable-1 .expand-button:hover {
+      background: #246f9d;
+    }
+
+    .expandable-2 .expand-button {
+      background: #7FCDDD;
+    }
+
+    .expandable-2 .expand-button:hover {
+      background: #6bbfd1;
+    }
+
     .expandable-header {
       text-align: center;
       cursor: pointer;
@@ -154,6 +213,14 @@
     .expandable-header:focus-within {
       transform: translateY(-2px);
       filter: brightness(1.04);
+    }
+
+
+    .section-gauge {
+      width: 100%;
+      max-width: 420px;
+      display: block;
+      margin: 0 auto 28px;
     }
 
     .expandable h2 {
@@ -178,7 +245,6 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
-      background: rgba(255,255,255,0.14);
       border: 2px solid rgba(255,255,255,0.35);
       border-radius: 999px;
       color: white;
@@ -193,7 +259,7 @@
     .expand-button:hover {
       transform: translateY(-2px) scale(1.03);
       opacity: 1;
-      background: rgba(255,255,255,0.22);
+      
       border-color: rgba(255,255,255,0.55);
     }
 
@@ -694,7 +760,9 @@
       }
 
       .rule-text ul {
-        text-align: left;
+        text-align: center;
+        list-style-position: inside;
+        padding-left: 0;
       }
 
       .play-card {
@@ -708,22 +776,9 @@
         margin: 0 auto;
       }
 
+      .play-text h3,
       .play-text p {
         text-align: center;
-      }
-
-      .play-text h3 {
-        text-align: center;
-      }
-
-      .step-text {
-        text-align: center;
-      }
-
-      .rule-text ul {
-        text-align: center;
-        list-style-position: inside;
-        padding-left: 0;
       }
 
       .step-card,
@@ -793,16 +848,13 @@
   </section>
 
   <!-- VIDEO SECTION -->
-  <section style="width:100%; background:#f8f4f1; padding:42px 20px 24px; text-align:center;">
-    <div style="max-width:900px; margin:0 auto; display:flex; flex-direction:column; gap:16px; align-items:center;">
-      <p style="font-size:clamp(1rem, 1.6vw, 1.35rem); line-height:1.7; color:#2d5da8; font-weight:700;">
-        あそびかたを動画でチェックしよう！
-      </p>
+  <section class="video-section">
+    <div class="video-inner">
+      <p class="video-title">あそびかたを動画でチェックしよう！</p>
 
-      <div style="position:relative; width:100%; max-width:760px; aspect-ratio:16 / 9; border-radius:18px; overflow:hidden; box-shadow:0 10px 24px rgba(0,0,0,0.18);">
+      <div class="video-frame">
         <iframe
           src="https://player.vimeo.com/video/1193161247?share=copy&fl=sv&fe=ci"
-          style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;"
           allow="autoplay; fullscreen; picture-in-picture"
           allowfullscreen>
         </iframe>
@@ -820,6 +872,7 @@
        This section opens when the user taps "くわしく見る". -->
   <section class="expandable expandable-1">
     <div class="expandable-header">
+      <img class="section-gauge" src="https://raw.githubusercontent.com/LuissForce/panic-pairs/main/Standard%20gauge.png" alt="Standard Rule Gauge">
       <h2>スタンダードルール</h2>
       <button class="expand-button">くわしく見る</button>
     </div>
@@ -952,6 +1005,7 @@
        This section explains the chance cards. -->
   <section class="expandable expandable-2">
     <div class="expandable-header">
+      <img class="section-gauge" src="https://raw.githubusercontent.com/LuissForce/panic-pairs/main/advanced%20gauge.png" alt="Advanced Rule Gauge">
       <h2>じょうきゅうしゃモード</h2>
       <h3>CHANCE CARDSをつかおう!</h3>
       <button class="expand-button">くわしく見る</button>
